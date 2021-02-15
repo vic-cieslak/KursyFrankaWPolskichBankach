@@ -1,10 +1,7 @@
 import requests
 import pandas as pd
 from datetime import datetime
-import time
 import asyncio
-import aiohttp
-import timeit
 import os
 import aiohttp
 import aiofiles
@@ -15,7 +12,7 @@ api_url = "https://www.mbank.pl/ajax/currency/"
 
 def download_and_save(date):
 
-
+  # link na 16:30
   url = api_url + "getCSV/?id=1&date={}%2016:30:00&lang=pl".format(date)
 
   print('sending url for: ', str(date))
@@ -38,7 +35,7 @@ def download_year():
     download_and_save(date_string)
 
 
-start = '19:55'
+# start = '19:55'
 
 
 
@@ -700,6 +697,7 @@ async def rfunc():
             # date = date.date()
             print(date, 'started')
 
+            # link na 8:00
             link = api_url + "getCSV/?id=0&date={}%2008:00:00&lang=pl".format(date)
             await fetch(session, link, folder, date)
 loop = asyncio.get_event_loop()

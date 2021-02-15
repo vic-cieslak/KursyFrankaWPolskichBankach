@@ -6,7 +6,7 @@ folder = 'dane/'
 pliki = os.listdir('dane/')
 pliki.sort()
 
-def extract_kupno_sprzedaz_CHF(dataframe):
+def extract_kupno_sprzedaz_CHF(df):
     kupno = df[df.columns[0]][2].split(';')[5]
     sprzedaz = df[df.columns[0]][2].split(';')[4]
 
