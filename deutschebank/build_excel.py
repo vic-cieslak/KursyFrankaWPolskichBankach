@@ -15,10 +15,23 @@ for line in data:
   kupno = lines[3]
 
   plik = ' '.join(lines[4:])
-  dane.append([data, float(sprzedaz), float(kupno), '',plik])
+
+
+  try:
+    sprzedaz = float(sprzedaz)
+  except:
+    pass
+
+  try:
+    kupno = float(kupno)
+  except:
+    pass
+
+  # dane.append([data, sprzedaz, kupno, '', plik])
+  dane.append([data, sprzedaz, kupno])
 
 df = pd.DataFrame(dane)
-df[3] = df[1] - df[2]
+# df[3] = df[1] - df[2]
 
 
 sorted_dane = sorted(dane, key=lambda t: datetime.strptime(t[0], '%Y-%m-%d'))

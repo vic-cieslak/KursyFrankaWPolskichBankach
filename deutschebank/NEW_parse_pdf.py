@@ -2,7 +2,7 @@ import camelot
 import tabula
 import os
 
-from extract_date import get_string_date
+from extract_date import get_string_date, extract_date_from_pdf
 
 folder = "dane/"
 
@@ -11,8 +11,7 @@ pliki = os.listdir(folder)
 # filtruj na indywidualne
 pliki = [p for p in pliki if 'ndywidu' in p]
 
-def parse_with_tabula(file_path):
-  tables = tabula.read_pdf(file_path, pages="all")
+def parse_with_tabula(tables):
 
   try:
     kraje = [kraj for kraj in tables[1]['Kraj']]
@@ -151,17 +150,26 @@ for id, plik in enumerate(pliki):
   print(plik)
   tables = camelot.read_pdf(file_path, pages="all")
 
+  date_string_from_pdf = None
+
   date_string = get_string_date(plik)
 
   if tables.n == 1:
     list_ = [a for a in tables[0].df[0]]
     if 'Szwajcaria' in list_:
-      kupno, sprzedaż = parse_with_tabula(file_path)
+      tables = tabula.read_pdf(file_path, pages="all")
+      kupno, sprzedaż = parse_with_tabula(tables)
     else:
       kupno, sprzedaż = extract_from_table_of_size_1(tables)
   else:
     tabela_kursowa = find_tabela_kursowa(tables)
     kupno, sprzedaż = extract_from_regular(tabela_kursowa)
+
+  date_string_from_pdf = extract_date_from_pdf(tables)
+
+  if date_string_from_pdf:
+    # prioritize date string from the file itself.
+    date_string = date_string_from_pdf
 
   with open('data.csv', 'a') as f:
     print('writing', id, date_string, str(kupno), str(sprzedaż))

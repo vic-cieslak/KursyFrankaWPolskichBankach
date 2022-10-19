@@ -78,3 +78,20 @@ def extract_date(nazwa_pliku):
         return '2018-11-16'
   else:
     return matches
+
+
+def extract_date_from_pdf(tables):
+  try:
+    if "TABELA KURSÓW KUPNA" in tables[0].df[0][0]:
+      date = tables[0].df[0][0].split('w dniu ')[-1]
+
+      print('found ', date, '!')
+      return date
+    else:
+      print('not found')
+      print(tables[0].df[0][0])
+  except AttributeError:
+    print('AttributeError')
+
+
+  return None
