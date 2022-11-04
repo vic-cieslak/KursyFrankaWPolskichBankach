@@ -28,5 +28,7 @@ Some code looks like async but it's not, it takes a while anyway to download all
 2. install dependencies with ```pip install -r requirements.txt```
 3. enter folder of given bank.
 4. create directory named /dane 
-5. to start scraping -> ```python scrap.py```
-6. after scraping all the data run ```python process.py``` (or similar, some banks are more complex to parse and require more scripts to run)
+5. adjust the dates you want to grab the data from in line: 
+```dates = pd.date_range(start="2021-03-11", end="2022-10-03").to_pydatetime().tolist()```
+6. to start scraping -> ```python scrap.py```
+7. after scraping all the data run ```python process.py``` (or similar, some banks are more complex to parse and require more scripts to run)
