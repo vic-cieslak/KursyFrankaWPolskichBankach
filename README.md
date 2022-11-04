@@ -21,3 +21,11 @@ If you lack some basic coding skills you will probably have trouble running it
 (hit me for ready excel spreadsheets or help, I did not had the reason to clean up the code) 
 
 Some code looks like async but it's not, it takes a while anyway to download all the data. 
+
+# Setup 
+
+1. create virtual environment for python
+2. install dependencies with ```pip install -r requirements.txt```
+3. enter folder of given bank.
+4. to start scraping -> ```python scrap.py```
+5. after scraping all the data run ```python process.py``` (or similar, some banks are more complex to parse and require more scripts to run)
