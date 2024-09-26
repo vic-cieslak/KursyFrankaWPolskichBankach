@@ -1,9 +1,8 @@
 # KursyFrankaWPolskichBankach
 Scraper and parser for CHF/PLN pairs to excel format for most major banks in Poland
 
-This scraping code is messy AF but produces 100% correct output.
-It can even parse pdfs from deutsche bank (plz deutsche bank, get a proper API)
-
+This scraping code is messy but produces 100% correct output.
+It can even parse pdfs from deutsche bank.
 
 
 It requires some fiddling with the code sometime or running scripts in correct order.
